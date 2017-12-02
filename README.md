@@ -26,3 +26,12 @@ func main() {
 
 }
 ```
+# pusher/connection.go
+	```go
+	var SubChannel []*Channel
+	btcusd := p.Channel("")	 //set channel what you want to receive
+	ethusd := p.Channel("")  //set channel what you want to receive
+	SubChannel=append(SubChannel,btcusd)
+	SubChannel=append(SubChannel,ethusd)
+	go Handler(SubChannel)
+	```
