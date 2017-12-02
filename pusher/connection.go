@@ -28,11 +28,11 @@ Reconnect_Loop:
 	log.Println("connecting")
 	ws, err := websocket.Dial(fmt.Sprintf(p.PushUrl, p.Key), "", "http://localhost/")
 	if err != nil {
-		logger.Warnning("dial err: ", err)
+		log.Println(err)
 		time.Sleep(time.Second * 5)
 		countReconnect+=1
 		if countReconnect>1000{
-			logger.Warnning("Reconnect too much") //重连次数过多
+			log.Println("Reconnect too much") //重连次数过多
 		}
 		goto Reconnect_Loop
 	}
@@ -68,7 +68,7 @@ func (p *PusherClient) ping() {
 
 		case <- time.After(120*time.Second): //120秒没有接受到消息则发送ping包
 			{err:=websocket.JSON.Send(p.conn, ping)
-			logger.Debug(ping)
+			log.Println(ping)
 			//fmt.Println(ping)
 			if err!=nil{
 				log.Println(err)
@@ -108,7 +108,7 @@ func (p *PusherClient) poll_pong() {
 		}
 		if msg.Event == "pusher:pong" {
 			//fmt.Println(msg)
-			logger.Debug(msg)
+			log.Println(msg)
 			PongMessgage<-msg
 		}else if  msg.Event == "pusher:ping"{ //如果接受到server的ping包，则回应pong包
 			
