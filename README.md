@@ -1,6 +1,7 @@
 # Pusher-Client
 
 # example
+# main.go
 
 ``` go 
 package main
