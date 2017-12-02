@@ -1,6 +1,6 @@
 
 package global
 
-import "jeffreyding11223/Pusher-Client/pusher"
+import "github.com/JeffreyDing11223/Pusher-Client/pusher"
 
 var PusherCli *pusher.PusherClient
